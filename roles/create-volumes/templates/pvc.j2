@@ -1,0 +1,11 @@
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  name: "{{ item[1].name }}"
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "{{ item[1].capacity }}"
+  volumeName: "{{ item[0].name }}-{{ item[1].name }}"

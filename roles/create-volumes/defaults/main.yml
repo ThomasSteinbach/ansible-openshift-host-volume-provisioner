@@ -1,0 +1,8 @@
+---
+volumes_path: /var/lib/openshift-volumes
+
+namespaces:
+# - name: <project name>
+#   volumes:
+#     - name: <persistent volume (claim) name>
+#       capacity: <e.g. '100Gi'>

@@ -1,0 +1,16 @@
+- hosts: localhost
+  become: true
+
+  roles:
+  - role: create-volumes
+    namespaces:
+      - name: nextcloud
+        volumes:
+          - name: appdata
+            capacity: 100Gi
+          - name: var-www-html
+            capacity: 1Gi
+          - name: mysql-data
+            capacity: 20Gi
+          - name: redis-data
+            capacity: 5Gi

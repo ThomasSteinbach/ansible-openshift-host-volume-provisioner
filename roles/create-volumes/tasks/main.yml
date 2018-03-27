@@ -1,0 +1,27 @@
+---
+
+- name: login to OpenShift
+  command: oc login -u system:admin
+  changed_when: false
+
+- name: create directories
+  file:
+    path: "{{ volumes_path }}/{{ item[0].name }}/{{ item[1].name }}"
+    owner: root
+    group: root
+    state: directory
+  with_subelements:
+    - "{{ namespaces }}"
+    - volumes
+
+- name: create persistent volume definitions
+  shell: echo {{ "'" + lookup('template', 'pv.j2') + "'" }} | oc apply -f -
+  with_subelements:
+    - "{{ namespaces }}"
+    - volumes
+
+- name: create appropriate persistent volume claims
+  shell: echo {{ "'" + lookup('template', 'pvc.j2') + "'" }} | oc apply -n "{{ item[0].name }}" -f -
+  with_subelements:
+    - "{{ namespaces }}"
+    - volumes
