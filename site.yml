@@ -4,6 +4,12 @@
   roles:
   - role: create-volumes
     namespaces:
+      - name: vault
+        volumes:
+          - name: file-data
+            capacity: 5Gi
+          - name: logs-data
+            capacity: 5Gi
       - name: nextcloud
         volumes:
           - name: appdata

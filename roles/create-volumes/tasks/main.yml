@@ -1,9 +1,5 @@
 ---
 
-- name: login to OpenShift
-  command: oc login -u system:admin
-  changed_when: false
-
 - name: create directories
   file:
     path: "{{ volumes_path }}/{{ item[0].name }}/{{ item[1].name }}"
@@ -14,14 +10,29 @@
     - "{{ namespaces }}"
     - volumes
 
+- name: login to OpenShift
+  command: oc login -u system:admin
+  changed_when: false
+
 - name: create persistent volume definitions
   shell: echo {{ "'" + lookup('template', 'pv.j2') + "'" }} | oc apply -f -
   with_subelements:
     - "{{ namespaces }}"
     - volumes
 
+- name: create OpenShift namespaces
+  command: "oc new-project {{ item.name }}"
+  with_items: "{{ namespaces }}"
+  register: result
+  changed_when: "'already exists' not in result.stderr"
+  failed_when: "'already exists' not in result.stderr and result.rc != 0"
+
 - name: create appropriate persistent volume claims
   shell: echo {{ "'" + lookup('template', 'pvc.j2') + "'" }} | oc apply -n "{{ item[0].name }}" -f -
   with_subelements:
     - "{{ namespaces }}"
     - volumes
+
+- name: give namespace rights to developer user
+  command: "oc adm policy add-role-to-user edit developer -n {{ item.name }}"
+  with_items: "{{ namespaces }}"
