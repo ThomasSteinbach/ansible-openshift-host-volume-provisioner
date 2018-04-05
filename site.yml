@@ -10,6 +10,16 @@
             capacity: 5Gi
           - name: logs-data
             capacity: 5Gi
+      - name: gitlab
+        volumes:
+          - name: etc-gitlab
+            capacity: 1Gi
+          - name: gitlab-data
+            capacity: 20Gi
+          - name: postgresql
+            capacity: 5Gi
+          - name: redis-data
+            capacity: 2Gi
       - name: nextcloud
         volumes:
           - name: appdata
@@ -17,6 +27,22 @@
           - name: var-www-html
             capacity: 1Gi
           - name: mysql-data
-            capacity: 20Gi
+            capacity: 5Gi
           - name: redis-data
+            capacity: 2Gi
+      - name: redmine
+        volumes:
+          - name: redmine-files
+            capacity: 20Gi
+          - name: mysql-data
+            capacity: 10Gi
+      - name: sogo
+        volumes:
+          - name: var-lib-mysql-data
+            capacity: 10Gi
+          - name: backups
+            capacity: 20Gi
+          - name: etc-sogo
+            capacity: 1Gi
+          - name: var-log-sogo
             capacity: 5Gi
