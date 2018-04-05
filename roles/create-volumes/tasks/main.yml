@@ -5,6 +5,7 @@
     path: "{{ volumes_path }}/{{ item[0].name }}/{{ item[1].name }}"
     owner: root
     group: root
+    mode: 0777
     state: directory
   with_subelements:
     - "{{ namespaces }}"
