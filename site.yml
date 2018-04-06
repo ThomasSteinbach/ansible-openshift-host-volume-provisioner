@@ -6,9 +6,9 @@
     namespaces:
       - name: vault
         volumes:
-          - name: file-data
+          - name: vault-file
             capacity: 5Gi
-          - name: logs-data
+          - name: vault-logs
             capacity: 5Gi
       - name: gitlab
         volumes:
@@ -16,7 +16,7 @@
             capacity: 1Gi
           - name: gitlab-data
             capacity: 20Gi
-          - name: postgresql
+          - name: var-lib-pgsql-data
             capacity: 5Gi
           - name: redis-data
             capacity: 2Gi
@@ -26,15 +26,15 @@
             capacity: 100Gi
           - name: var-www-html
             capacity: 1Gi
-          - name: mysql-data
+          - name: var-lib-mysql-data
             capacity: 5Gi
           - name: redis-data
             capacity: 2Gi
       - name: redmine
         volumes:
-          - name: redmine-files
+          - name: usr-src-redmine-files
             capacity: 20Gi
-          - name: mysql-data
+          - name: var-lib-mysql-data
             capacity: 10Gi
       - name: sogo
         volumes:
@@ -46,3 +46,9 @@
             capacity: 1Gi
           - name: var-log-sogo
             capacity: 5Gi
+      - name: xwiki
+        volumes:
+          - name: var-lib-mysql-data
+            capacity: 20Gi
+          - name: xwiki-data
+            capacity: 20Gi
