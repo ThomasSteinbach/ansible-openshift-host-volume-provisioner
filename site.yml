@@ -30,7 +30,7 @@
             capacity: 100Gi
           - name: var-www-html
             capacity: 1Gi
-          - name: var-lib-mysql-data
+          - name: var-lib-mysql
             capacity: 5Gi
           - name: redis-data
             capacity: 2Gi
@@ -38,11 +38,11 @@
         volumes:
           - name: usr-src-redmine-files
             capacity: 20Gi
-          - name: var-lib-mysql-data
+          - name: var-lib-mysql
             capacity: 10Gi
       - name: sogo
         volumes:
-          - name: var-lib-mysql-data
+          - name: var-lib-mysql
             capacity: 10Gi
           - name: backups
             capacity: 20Gi
@@ -52,7 +52,7 @@
             capacity: 5Gi
       - name: xwiki
         volumes:
-          - name: var-lib-mysql-data
+          - name: var-lib-mysql
             capacity: 20Gi
           - name: xwiki-data
             capacity: 20Gi
