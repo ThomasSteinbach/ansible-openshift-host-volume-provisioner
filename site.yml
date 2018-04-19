@@ -3,6 +3,7 @@
 
   roles:
   - role: create-volumes
+    volumes_path: /var/lib/docker/openshift-volumes
     namespaces:
       - name: vault
         volumes:
@@ -16,6 +17,9 @@
             capacity: 1Gi
           - name: gitlab-data
             capacity: 20Gi
+            owner: 998
+            group: 998
+            mode: 0750
           - name: var-lib-pgsql-data
             capacity: 5Gi
           - name: redis-data
