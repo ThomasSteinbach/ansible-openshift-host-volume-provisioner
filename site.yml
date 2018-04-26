@@ -3,7 +3,7 @@
 
   roles:
   - role: create-volumes
-    volumes_path: /var/lib/docker/openshift-volumes
+    volumes_path: /data/openshift-volumes
     namespaces:
       - name: vault
         volumes:
