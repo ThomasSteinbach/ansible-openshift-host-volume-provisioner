@@ -3,7 +3,7 @@
 
   roles:
   - role: create-volumes
-    volumes_path: /var/lib/docker/openshift-volumes
+    volumes_path: /data/openshift-volumes
     namespaces:
       - name: vault
         volumes:
@@ -19,7 +19,7 @@
             capacity: 20Gi
             owner: 998
             group: 998
-            mode: 0750
+            mode: '0750'
           - name: var-lib-pgsql-data
             capacity: 5Gi
           - name: redis-data
@@ -28,8 +28,14 @@
         volumes:
           - name: appdata
             capacity: 100Gi
+            owner: 33
+            onwer: 0
+            mode: '0750'
           - name: var-www-html
             capacity: 1Gi
+            owner: 33
+            onwer: 0
+            mode: '0750'
           - name: var-lib-mysql
             capacity: 5Gi
           - name: redis-data
@@ -38,21 +44,45 @@
         volumes:
           - name: usr-src-redmine-files
             capacity: 20Gi
+            owner: 999
+            group: 999
+            mode: '0755'
           - name: var-lib-mysql
             capacity: 10Gi
+            owner: 999
+            group: 999
+            mode: '0755'
       - name: sogo
         volumes:
           - name: var-lib-mysql
             capacity: 10Gi
+            owner: 999
+            group: 999
+            mode: '0755'
           - name: backups
             capacity: 20Gi
+            owner: 999
+            group: 999
+            mode: '0755'
           - name: etc-sogo
             capacity: 1Gi
+            owner: 999
+            group: 999
+            mode: '0755'
           - name: var-log-sogo
             capacity: 5Gi
+            owner: 999
+            group: 999
+            mode: '0750'
       - name: xwiki
         volumes:
           - name: var-lib-mysql
             capacity: 20Gi
+            owner: 999
+            group: 999
+            mode: '0755'
           - name: xwiki-data
             capacity: 20Gi
+            owner: root
+            group: root
+            mode: '0755'

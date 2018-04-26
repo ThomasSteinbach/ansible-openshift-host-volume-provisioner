@@ -3,9 +3,9 @@
 - name: create directories
   file:
     path: "{{ volumes_path }}/{{ item[0].name }}/{{ item[1].name }}"
-    owner: "{{ item[1].owner | default 'root' }}"
-    group: "{{ item[1].group | default 'root' }}"
-    mode: "{{ item[1].mode | default '0777' }}"
+    owner: "{{ item[1].owner | default('root') }}"
+    group: "{{ item[1].group | default('root') }}"
+    mode: "{{ item[1].mode | default('0777') }}"
     state: directory
   with_subelements:
     - "{{ namespaces }}"
