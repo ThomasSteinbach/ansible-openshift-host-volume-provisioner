@@ -52,6 +52,13 @@
             owner: 999
             group: 999
             mode: '0755'
+      - name: rundeck
+        volumes:
+          - name: var-lib-mysql
+            capacity: 20Gi
+            owner: 999
+            group: 999
+            mode: '0755'
       - name: sogo
         volumes:
           - name: var-lib-mysql
